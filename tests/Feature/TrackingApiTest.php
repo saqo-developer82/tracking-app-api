@@ -14,9 +14,6 @@ class TrackingApiTest extends TestCase
 
     public function test_can_track_existing_package()
     {
-        /*$trackingData = Tracking::factory()->count(1)->create([
-            'role' => 'admin', // override just this field
-        ]);*/
         Tracking::create([
             'tracking_code' => 'TEST123456789',
             'estimated_delivery_date' => '2025-06-15',
