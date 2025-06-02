@@ -43,14 +43,14 @@ class CsvTrackingRepository implements TrackingRepositoryInterface
             }
 
             $data = str_getcsv($line);
-            if (count($data) >= 6 && $data[0] === $trackingCode) {
+            if ($data[0] === $trackingCode) {
                 return [
                     'tracking_code' => $data[0],
                     'estimated_delivery_date' => $data[1],
                     'status' => $data[2],
-                    'carrier' => $data[3],
-                    'origin' => $data[4],
-                    'destination' => $data[5]
+                    'carrier' => $data[3] ?? null,
+                    'origin' => $data[4] ?? null,
+                    'destination' => $data[5] ?? null
                 ];
             }
         }
@@ -70,15 +70,29 @@ class CsvTrackingRepository implements TrackingRepositoryInterface
             Storage::put($this->csvFile, $header);
 
             // Add some sample data
-            $sampleData = [
-                "TRK123456789,2024-06-15,In Transit,DHL,New York,Los Angeles",
-                "TRK987654321,2024-06-12,Delivered,FedEx,Chicago,Miami",
-                "TRK456789123,2024-06-18,Processing,UPS,Seattle,Denver"
-            ];
+            $sampleData = $this->getSampleData();
 
             foreach ($sampleData as $data) {
                 Storage::append($this->csvFile, $data);
             }
         }
+    }
+
+    /**
+     * Retrieves sample data rows for the CSV file based on the request key value.
+     * If the provided testing key matches the application's testing key,
+     * a single test entry is returned. Otherwise, a default set of sample entries is provided.
+     *
+     * @return array Returns an array of sample data rows for the CSV file.
+     */
+    protected function getSampleData(): array
+    {
+        return request()->get('testing_key', '') == config('app.testing_key') ?
+            ["TEST123456789,2024-06-15,in_transit,Test Carrier"] :
+            [
+                "TRK123456789,2024-06-15,in_transit,DHL,New York,Los Angeles",
+                "TRK987654321,2024-06-12,delivered,FedEx,Chicago,Miami",
+                "TRK456789123,2024-06-18,processing,UPS,Seattle,Denver"
+            ];
     }
 }

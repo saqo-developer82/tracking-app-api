@@ -29,8 +29,8 @@ class TrackingService
      */
     public function getTrackingInfo(string $trackingCode): ?array
     {
-        $cacheKey = "tracking_{$trackingCode}";
-        $cacheTtl = config('tracking.cache_ttl', 300); // 5 minutes
+        $cacheKey = config('tracking.storage_driver') . "_tracking_{$trackingCode}";
+        $cacheTtl = config('tracking.cache_ttl');
 
         return Cache::remember($cacheKey, $cacheTtl, function () use ($trackingCode) {
             Log::info("Fetching tracking info for: {$trackingCode}");

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use App\Repositories\CsvTrackingRepository;
 use App\Constants\TrackingStatuses;
@@ -16,7 +17,7 @@ class CsvTrackingRepositoryTest extends TestCase
         parent::setUp();
 
         // Create a temporary CSV file for testing
-        $this->testCsvPath = storage_path('app/test_tracking.csv');
+        $this->testCsvPath = 'test_tracking_data.csv';
         config(['tracking.csv_file' => $this->testCsvPath]);
 
         $this->repository = new CsvTrackingRepository();
@@ -32,8 +33,8 @@ class CsvTrackingRepositoryTest extends TestCase
     protected function tearDown(): void
     {
         // Clean up test file
-        if (file_exists($this->testCsvPath)) {
-            unlink($this->testCsvPath);
+        if (file_exists(Storage::path($this->testCsvPath))) {
+            unlink(Storage::path($this->testCsvPath));
         }
         parent::tearDown();
     }

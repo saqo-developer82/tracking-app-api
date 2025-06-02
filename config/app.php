@@ -124,4 +124,5 @@ return [
     ],
 
     'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
+    'testing_key' => env('TESTING_KEY', 'testing_key'),
 ];
