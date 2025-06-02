@@ -6,7 +6,7 @@
 3. Set up your environment by copying the `.env.example` file to `.env`.
 4. Update the `.env` file with your database configuration and other settings.
    - If you are using SQLite, you can set `DB_CONNECTION=sqlite` and `DB_DATABASE=/your_root_path/database/trackings.sqlite` (make sure to create the `trackings.sqlite` file in the `database` directory).
-   - If you are using CSV, set `TRACKING_STORAGE_DRIVER=csv` and provide the path to your CSV file in `CSV_TRACKING_FILE`.
+   - If you are using CSV, set `TRACKING_STORAGE_DRIVER=csv` and provide the name of your CSV file in `CSV_TRACKING_FILE`, for example `tracking_data.csv`.
    - add `FRONTEND_URL=http://localhost:3000` to allow CORS requests from your frontend application.
    - add `TESTING_KEY=testing` to use for testing purposes.
 5. Generate the application key by running `php artisan key:generate`
