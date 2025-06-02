@@ -1,23 +1,21 @@
 # This API is made for getting sipping tracking information
 
 **To run the API, you need to**
-1. Install the required packages by running `composer install`
-2. Set up your environment by copying the `.env.example` file to `.env` and configuring it as needed.
-3. Generate the application key by running `php artisan key:generate`
-4. Run the migrations to set up the database by executing `php artisan migrate`
-5. (Optional) Seed the database with sample data by running `php artisan db:seed`
-6. Run the API by executing `php artisan serve`
-7. You can get the tracking info using GET API at `http://localhost:8000/api/track`, with a tracking_code parameter, like this: `http://localhost:8000/api/track?tracking_code=YOUR_TRACKING_CODE`
-9. To test the API, you can use tools like Postman or cURL to send requests.
-10. You can also run the tests by executing `php artisan test` to ensure everything is working correctly.
-
-Set these environment variables in your `.env` file:
-```aiignore
-TRACKING_STORAGE_DRIVER=sqlite or csv # select the driver you want to use
-CSV_TRACKING_FILE= your csv file path # this is required if you are using csv driver , for example: tracking.csv
-FRONTEND_URL=http://localhost:3000 # this is the URL of your frontend application, used for CORS
-TESTING_KEY=testing_key123 # this is used for testing purposes, you can change it to any value you want
-```
+1. use PHP 8.2 or higher
+2. Install the required packages by running `composer install`
+3. Set up your environment by copying the `.env.example` file to `.env`.
+4. Update the `.env` file with your database configuration and other settings.
+   - If you are using SQLite, you can set `DB_CONNECTION=sqlite` and `DB_DATABASE=/your_root_path/database/trackings.sqlite` (make sure to create the `trackings.sqlite` file in the `database` directory).
+   - If you are using CSV, set `TRACKING_STORAGE_DRIVER=csv` and provide the path to your CSV file in `CSV_TRACKING_FILE`.
+   - add `FRONTEND_URL=http://localhost:3000` to allow CORS requests from your frontend application.
+   - add `TESTING_KEY=testing` to use for testing purposes.
+5. Generate the application key by running `php artisan key:generate`
+6. Run the migrations to set up the database by executing `php artisan migrate`
+7. (Optional) Seed the database with sample data by running `php artisan db:seed`
+8. Run the API by executing `php artisan serve`
+9. You can get the tracking info using GET API at `http://localhost:8000/api/track`, with a tracking_code parameter, like this: `http://localhost:8000/api/track?tracking_code=YOUR_TRACKING_CODE`
+10. To test the API, you can use tools like Postman or cURL to send requests.
+11. You can also run the tests by executing `php artisan test` to ensure everything is working correctly.
 
 **Improvements can be done**
 1. Implement adding new tracking data.

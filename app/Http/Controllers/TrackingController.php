@@ -22,7 +22,7 @@ class TrackingController extends Controller
      * @param TrackingRequest $request The request containing the tracking code.
      * @return JsonResponse The response containing the tracking information or an error message.
      */
-    public function getInfo(TrackingRequest $request): JsonResponse
+    public function show(TrackingRequest $request): JsonResponse
     {
         $trackingCode = strtoupper(trim($request->input('tracking_code')));
 

@@ -21,17 +21,4 @@ class TrackingStatuses
             self::DELAYED,
         ];
     }
-
-    /**
-     * @return array
-     */
-    public static function getStatusesWithLabels(): array
-    {
-        return [
-            self::PROCESSING => 'Processing',
-            self::IN_TRANSIT => 'In Transit',
-            self::DELIVERED => 'Delivered',
-            self::DELAYED => 'Delayed',
-        ];
-    }
 }
