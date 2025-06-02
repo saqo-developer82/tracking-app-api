@@ -14,7 +14,7 @@
 Set these environment variables in your `.env` file:
 ```aiignore
 TRACKING_STORAGE_DRIVER=sqlite or csv # select the driver you want to use
-CSV_TRACKING_FILE= your csv file path # this is required if you are using csv driver , for example: storage/app/tracking.csv
+CSV_TRACKING_FILE= your csv file path # this is required if you are using csv driver , for example: tracking.csv
 FRONTEND_URL=http://localhost:3000 # this is the URL of your frontend application, used for CORS
 ```
 

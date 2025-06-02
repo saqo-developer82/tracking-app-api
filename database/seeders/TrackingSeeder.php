@@ -5,6 +5,10 @@ namespace Database\Seeders;
 use App\Models\Tracking;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use App\Constants\{
+    TrackingCarriers,
+    TrackingStatuses
+};
 
 class TrackingSeeder extends Seeder
 {
@@ -21,23 +25,23 @@ class TrackingSeeder extends Seeder
             [
                 'tracking_code' => 'TRK123456789',
                 'estimated_delivery_date' => Carbon::now()->addDays(3)->format('Y-m-d'),
-                'status' => 'in_transit',
-                'carrier' => 'DHL',
+                'status' => TrackingStatuses::IN_TRANSIT,
+                'carrier' => TrackingCarriers::DHL,
                 'origin' => 'New York, NY',
                 'destination' => 'Los Angeles, CA'
             ],
             [
                 'tracking_code' => 'TRK567325339',
-                'status' => 'delivered',
-                'carrier' => 'FedEx',
+                'status' => TrackingStatuses::DELIVERED,
+                'carrier' => TrackingCarriers::FEDEX,
                 'origin' => 'Chicago, IL',
                 'destination' => 'Philadelphia, PA'
             ],
             [
                 'tracking_code' => 'TRK481003676',
                 'estimated_delivery_date' => Carbon::now()->addDays(15)->format('Y-m-d'),
-                'status' => 'processing',
-                'carrier' => 'UPS',
+                'status' => TrackingStatuses::PROCESSING,
+                'carrier' => TrackingCarriers::UPS,
                 'origin' => 'Fort Worth, TX',
                 'destination' => 'Columbus, OH'
             ],

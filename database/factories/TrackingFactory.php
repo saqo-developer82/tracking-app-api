@@ -2,13 +2,17 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Constants\{
+    TrackingCarriers,
+    TrackingStatuses
+};
 
 class TrackingFactory extends Factory
 {
     public function definition(): array
     {
-        $carriers = ['DHL', 'FedEx', 'UPS', 'USPS', 'Amazon Logistics', 'FedEx Express'];
-        $statuses = ['processing', 'in_transit', 'delivered', 'delayed'];
+        $carriers = TrackingCarriers::all();
+        $statuses = TrackingStatuses::all();
 
         $cities = [
             'New York, NY', 'Los Angeles, CA', 'Chicago, IL', 'Houston, TX',

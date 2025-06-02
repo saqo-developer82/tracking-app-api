@@ -8,6 +8,10 @@ use App\Services\TrackingService;
 use Carbon\Carbon;
 use Mockery;
 use Illuminate\Support\Facades\Cache;
+use App\Constants\{
+    TrackingCarriers,
+    TrackingStatuses
+};
 
 class TrackingServiceTest extends TestCase
 {
@@ -35,8 +39,8 @@ class TrackingServiceTest extends TestCase
         $expectedData = [
             'tracking_code' => 'TRK123456789',
             'estimated_delivery_date' => Carbon::now()->addDays(3)->format('Y-m-d'),
-            'status' => 'in_transit',
-            'carrier' => 'DHL',
+            'status' => TrackingStatuses::IN_TRANSIT,
+            'carrier' => TrackingCarriers::DHL,
             'origin' => 'New York, NY',
             'destination' => 'Los Angeles, CA'
         ];
@@ -51,7 +55,7 @@ class TrackingServiceTest extends TestCase
         // Assert
         $this->assertNotNull($result);
         $this->assertEquals($trackingCode, $result['tracking_code']);
-        $this->assertEquals('in_transit', $result['status']);
+        $this->assertEquals(TrackingStatuses::IN_TRANSIT, $result['status']);
     }
 
     public function test_get_tracking_info_returns_null_for_invalid_code(): void

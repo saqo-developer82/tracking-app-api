@@ -12,7 +12,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(TrackingRepositoryInterface::class, function ($app) {
-            $driver = config('tracking.storage_driver', 'sqlite');
+            $driver = config('tracking.storage_driver');
 
             return match ($driver) {
                 'csv' => new CsvTrackingRepository(),

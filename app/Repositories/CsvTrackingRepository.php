@@ -11,7 +11,7 @@ class CsvTrackingRepository implements TrackingRepositoryInterface
 
     public function __construct()
     {
-        $this->csvFile = config('tracking.csv_file', 'tracking_data.csv');
+        $this->csvFile = config('tracking.csv_file');
         $this->ensureCsvExists();
     }
 
